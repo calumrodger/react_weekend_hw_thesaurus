@@ -3,7 +3,9 @@ import React from 'react';
 function Word({word}) {
 
   return(
-      <p>{word}</p>
+      <>
+      <p>{word.word}</p>
+      </>
   )}
 
 export default Word;
