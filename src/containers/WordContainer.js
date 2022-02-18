@@ -2,32 +2,45 @@ import React, {useState, useEffect} from 'react'
 import WordList from '../components/WordList'
 
 const WordContainer = () => {
-    const [words, setWords] = useState([]);
+    const [word, setWord] = useState([]);
 
     useEffect(() => {
-        getWords();
+        getWord();
     }, []);
  
-    const getWords = function() { 
-        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/punch")
-        // fetch("https://random-word-api.herokuapp.com/word?number=10") 
-        // fetch("https://restcountries.com/v3.1/all") 
+    const getWord = function() { 
+        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/placeholder")
             .then(res => res.json())
             // .then(wordsData => console.log(wordsData))
-            .then(wordsData => setWords(wordsData)) 
+            .then(wordsData => setWord(wordsData)) 
   }
 
+
+    const handleSubmit = function(){
+        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/click")
+        .then(res => res.json())
+        .then(wordsData => setWord(wordsData))
+    }
+
+
+    const fetchFelt = function(){
+        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/felt")
+        .then(res => res.json())
+        .then(wordsData => setWord(wordsData))
+    }
+    
   
 
   return (
       <>
-      <h2>Some Random Words</h2> 
+      <h2>Searchable Dictionary</h2> 
       <form id="form">
-      <label for="chosenWord">Word:</label>
+      <label>Word:</label>
       <input type="text" id="chosenWord"></input>
-      <button onClick={getWords}>Go</button>
+      <button type="submit" value="newWord" onClick={handleSubmit}>Go</button>
     </form> 
-      <WordList words={words}/>
+    <button onClick={fetchFelt}>Look up the word 'felt'!</button>
+      <WordList word={word}/>
       </>
   )
 }
