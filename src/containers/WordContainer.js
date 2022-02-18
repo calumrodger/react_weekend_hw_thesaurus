@@ -9,7 +9,7 @@ const WordContainer = () => {
     }, []);
  
     const getWords = function() { 
-        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/hello")
+        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/punch")
         // fetch("https://random-word-api.herokuapp.com/word?number=10") 
         // fetch("https://restcountries.com/v3.1/all") 
             .then(res => res.json())
@@ -17,9 +17,16 @@ const WordContainer = () => {
             .then(wordsData => setWords(wordsData)) 
   }
 
+  
+
   return (
       <>
-      <h2>Some Random Words</h2>  
+      <h2>Some Random Words</h2> 
+      <form id="form">
+      <label for="chosenWord">Word:</label>
+      <input type="text" id="chosenWord"></input>
+      <button onClick={getWords}>Go</button>
+    </form> 
       <WordList words={words}/>
       </>
   )

@@ -1,11 +1,17 @@
 import React from 'react';
 
-function Word({word}) {
+function Word({word, meanings, partOfSpeech}) {
+
+    const definitions = meanings.map((meaning) => {
+        return(<li>{meaning.partOfSpeech[0]}, {meaning.definitions[0].definition}</li>)
+    })
+
 
   return(
       <>
-      <p>{word.word}</p>
+      <p>{word}</p>
+      {definitions}
       </>
   )}
 
-export default Word;
+export default Word
