@@ -1,0 +1,15 @@
+.search {
+    background-color: cornsilk;
+    padding-left: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 10px;
+    margin-left: 70px;
+    margin-right: 70%;
+}
+
+.word-list {
+    margin: 40px;
+    padding: 20px;
+    background-color: bisque;
+}

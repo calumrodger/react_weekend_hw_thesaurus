@@ -1,4 +1,5 @@
 import React from 'react';
+import './Word.css'
 
 function Word({word, meanings}) {
 
@@ -9,8 +10,8 @@ function Word({word, meanings}) {
 
   return(
       <>
-      <p>{word}</p>
-      {definitions}
+      <p class="word">{word}</p>
+      <p class="definitions">{definitions}</p>
       </>
   )}
 

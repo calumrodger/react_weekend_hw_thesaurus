@@ -1,0 +1,9 @@
+.word {
+    color: blue;
+    font-size: xx-large;
+    font-style: bold;
+}
+
+li {
+    padding: 10px;
+}

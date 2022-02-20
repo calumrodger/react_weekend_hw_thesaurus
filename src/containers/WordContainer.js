@@ -1,22 +1,37 @@
 import React, {useState, useEffect} from 'react' 
 import WordList from '../components/WordList'
+import './WordContainer.css'
 
 const WordContainer = () => {
     const [word, setWord] = useState([]);
-    const [userInput, setInput] = useState("");
+    const [userInput, setInput] = useState("placeholder");
 
     useEffect(() => {
         if(word === []);
-        getWord();
+        getWord(userInput);
     }, []);
  
     const getWord = function(userInput) { 
         let fetchUrl = (`https://api.dictionaryapi.dev/api/v2/entries/en/${userInput}`)
         fetch(fetchUrl)
-            .then(res => res.json())
-            // .then(wordsData => console.log(wordsData))
+            // .then(res=>console.log(res))
+            .then((res) => res.json())
             .then(wordData => setWord(wordData)) 
+            // .catch(err => setWord([]));
+            
   }
+
+//   const getWord = function(userInput) { 
+//     let fetchUrl = (`https://api.dictionaryapi.dev/api/v2/entries/en/${userInput}`)
+//     fetch(fetchUrl)
+//         // .then(res=>console.log(res))
+//         .then((res) => {
+//           if((res.ok)) return res.json()
+//           else return("no such word")
+//         .then(wordData => setWord(wordData)) 
+//         // .catch(err => setWord([]));
+        
+// })
 
   const handleChange = (event) => {
     setInput({
@@ -36,46 +51,29 @@ const WordContainer = () => {
     getWord(trimmedString);
   };
 
-//   const setInputWord = function(input) {
-//       setInput(input)
-//       console.log(userInput)
-//   }
-
-
-//     const handleSubmit = event => {
-//         setInputWord(event.target.value);
-//     }
-
-
-    // const handleSubmit = (event) => {
-
-    //     // console.log(event.target.newWord.value)
-    //     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${userInput}`)
+    // const fetchFelt = function(){
+    //     fetch("https://api.dictionaryapi.dev/api/v2/entries/en/felt")
     //     .then(res => res.json())
     //     .then(wordData => setWord(wordData))
-    // }
-
-
-    const fetchFelt = function(){
-        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/felt")
-        .then(res => res.json())
-        .then(wordData => setWord(wordData))
-    }
+    //     .catch(err => console.error);
+    // } 
     
   
 
     return (
       <>
-      <h2>Searchable Dictionary</h2> 
+      <div class="search">
      <label>
-  Search
+  <span class="search-label">Search: </span>
   <input name="userInputWord" onChange={handleChange} />
 </label>
-<button onClick={handleSubmit}>Submit</button>
-    <button onClick={fetchFelt}>Look up the word 'felt'!</button>
+<button onClick={handleSubmit}>Go</button>
+</div>
+    {/* <button onClick={fetchFelt}>Look up the word 'felt'!</button> */}
+    <div class="word-list">
       <WordList word={word}/>
+      </div>
       </>
   )}
-
-
+    
 export default WordContainer
